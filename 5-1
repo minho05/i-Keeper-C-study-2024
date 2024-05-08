@@ -1,0 +1,23 @@
+#include <stdio.h>
+float GetFee(float price, int age) {
+    if (age <= 3) {
+        return 0;
+    }
+    else if (age <= 13) {
+        return price * 0.5;
+    }
+    else if (age <= 19) {
+        return price * 0.25;
+    }
+    else {
+        return price;
+    }
+}
+int main() {
+    float price = 1000;
+    int age;
+    scanf_s("%d %f", &age, &price);
+    float a = GetFee(price, age);
+    printf("최종 요금: %.2f\n", a);
+    return 0;
+}
