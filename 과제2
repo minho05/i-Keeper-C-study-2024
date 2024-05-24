@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main() {
+    int num_strings, max_length;
+    printf("Enter the number of strings: ");
+    scanf_s("%d", &num_strings);
+    printf("Enter the maximum length of string: ");
+    scanf_s("%d", &max_length);
+    char** strings = (char**)malloc(num_strings * sizeof(char*));
+    if (strings == NULL) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+    for (int i = 0; i < num_strings; i++) {
+        strings[i] = (char*)malloc((max_length + 1) * sizeof(char));
+        if (strings[i] == NULL) {
+            printf("Memory allocation failed\n");
+            for (int j = 0; j < i; j++) {
+                free(strings[j]);
+            }
+            free(strings);
+            return 1;
+        }
+    }
+    for (int i = 0; i < num_strings; i++) {
+        printf("Enter string %d: ", i + 1);
+        scanf_s("%s", strings[i]);
+    }
+    printf("\nEntered strings:\n");
+    for (int i = 0; i < num_strings; i++) {
+        printf("%s\n", strings[i]);
+    }
+    for (int i = 0; i < num_strings; i++) {
+        free(strings[i]);
+    }
+    free(strings);
+
+    return 0;
+}
